@@ -9,6 +9,9 @@ package kalkulator;
  *
  * @author Lenny
  */
+import commonMultiple.NumberGroup;
+import commonMultiple.Number;
+import java.util.ArrayList;
 public class Kalkulator {
 
     /**
@@ -16,6 +19,17 @@ public class Kalkulator {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Number[] group = new Number[2];
+        group[0] = new Number(14);
+        group[1] = new Number(21);
+        NumberGroup skupka = new NumberGroup(group, 2);
+        ArrayList<Integer> list = skupka.calculate(true);
+        int totalResult = 1;
+        for (int i : list)
+        {
+            totalResult *= i;
+        }
+        System.out.println(totalResult);
     }
     
 }
