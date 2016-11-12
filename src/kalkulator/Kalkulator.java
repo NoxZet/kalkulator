@@ -18,6 +18,7 @@ public class Kalkulator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        // Testovací komentík
         // TODO code application logic here
         Number[] group = new Number[2];
         group[0] = new Number(14);
