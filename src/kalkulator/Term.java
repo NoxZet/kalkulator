@@ -10,11 +10,14 @@ import java.util.ArrayList;
  * @author Lenny
  */
 public class Term {
-    boolean negative;
+    Fraction count;
     ArrayList<Fraction> nums;
     ArrayList<Term> terms;
-    Term(boolean neg) {
-        this.negative = neg;
+    Term(int count) {
+        this.count = new Fraction(count, 1);
+    }
+    Term(int count, int div) {
+        this.count = new Fraction(count, div);
     }
     /**
      * Přidá objekt zlomku do členu.
@@ -22,6 +25,10 @@ public class Term {
      */
     void addFraction(Fraction num) {
         nums.add(num);
+    }
+    void addFraction(int num, int denum) {
+        Fraction number = new Fraction(num, denum);
+        nums.add(number);
     }
     /**
      * Přidá objekt členu do členu.
