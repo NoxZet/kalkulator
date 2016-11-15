@@ -6,9 +6,11 @@
 package kalkulator;
 
 /**
- *
+ * Převede zpracovaný string na jeden halvní člen, obsahující další prvky.
  * @author Lenny
  */
 public class Convert {
-    
+    Convert(String input){
+        
+    }
 }
