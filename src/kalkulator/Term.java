@@ -5,14 +5,16 @@
  */
 package kalkulator;
 import java.util.ArrayList;
+import commonMultiple.NumberGroup;
+import commonMultiple.Number;
 /**
  * Člen, obsahuje zlomky a jiné členy.
  * @author Lenny
  */
 public class Term {
     Fraction count;
-    ArrayList<Fraction> nums;
-    ArrayList<Term> terms;
+    ArrayList<Fraction> nums = new ArrayList<>();
+    ArrayList<Term> terms = new ArrayList<>();
     Term(int count) {
         this.count = new Fraction(count, 1);
     }

@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 package kalkulator;
+import commonMultiple.NumberGroup;
+import commonMultiple.Number;
+import java.util.ArrayList;
 
 /**
  *
  * @author Lenny
  */
-import commonMultiple.NumberGroup;
-import commonMultiple.Number;
-import java.util.ArrayList;
 public class Kalkulator {
 
     /**
@@ -20,7 +20,9 @@ public class Kalkulator {
     public static void main(String[] args) {
         // Testovací komentík
         // TODO code application logic here
-        Number[] group = new Number[2];
+        Convert converter = new Convert("(4.4/2)");
+        converter.process();
+        /*Number[] group = new Number[2];
         group[0] = new Number(14);
         group[1] = new Number(21);
         NumberGroup skupka = new NumberGroup(group, 2);
@@ -30,7 +32,7 @@ public class Kalkulator {
         {
             totalResult *= i;
         }
-        System.out.println(totalResult);
+        System.out.println(totalResult);*/
     }
     
 }

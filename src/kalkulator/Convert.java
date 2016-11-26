@@ -17,10 +17,12 @@ public class Convert {
     private void newInput(String input) {
         str = input;
     }
-    public Term process(String input) {
-        int minpos, numlen;
-        int depth = 0, pos = 0, count = 1, div = 1;
+    public Term process() {
+        int strlen, dotpos, places, i, e;
+        int depth = 0, pos = 0, count = 1, div = 1, temp, temp2;
         char nextchar;
+        String substr = "";
+        String input = str;
         // TODO count max depth
         Term[] current = new Term[64];
         current[depth] = new Term(1);
@@ -28,27 +30,51 @@ public class Convert {
         while(pos<input.length())
         {
             nextchar = input.charAt(pos);
-            // pokud nula, invertne se násobitel
+            // pokud znaménko mínus, invertne se násobitel
             if (nextchar=='-')
             {
                 pos++;
                 count *= -1;
             }
             // zpracování čísla
-            else if (Character.isDigit(nextchar))
+            else if (Character.isDigit(nextchar) || nextchar=='.')
             {
-                minpos=pos;
+                //minpos=pos;
+                substr=""+nextchar;
                 pos++;
-                while(Character.isDigit(input.charAt(pos)))
+                nextchar = input.charAt(pos);
+                while(Character.isDigit(nextchar) || nextchar=='.')
                 {
                     pos++;
+                    substr+=nextchar;
                     nextchar = input.charAt(pos);
                 }
-                numlen=pos-minpos;
-                if (isDiv)
-                    div *= Integer.parseInt(input.substring(minpos, numlen));
+                //numlen=pos-minpos;
+                dotpos = substr.indexOf('.');
+                if (dotpos>0)
+                {
+                    strlen = substr.length();
+                    places = strlen-dotpos;
+                    temp = Integer.parseInt(substr.replace(".",""));
+                    temp2 = 1;
+                    for(i=1;i<places;i++)
+                        temp2*=10;
+                }
                 else
-                    count *= Integer.parseInt(input.substring(minpos, numlen));
+                {
+                    temp = Integer.parseInt(substr);
+                    temp2 = 1;
+                }
+                if (isDiv)
+                {
+                    count *= temp2;
+                    div *= temp;
+                }
+                else
+                {
+                    count *= temp;
+                    div *= temp2;
+                }
                 switch (nextchar) {
                     case '*':
                         pos++;
@@ -61,7 +87,9 @@ public class Convert {
                     case '+':
                     case '-':
                     case ')':
-                        current[depth].addFraction(count, div);
+                        current[depth].addFraction(new Fraction(count, div));
+                        //System.out.println(count);
+                        //System.out.println(div);
                         count = 1; div = 1; isDiv = false;
                         break;
                     default:
@@ -87,6 +115,8 @@ public class Convert {
             {
                 pos = input.length();
             }
+            else
+                pos++;
         }
         return current[0];
     }
